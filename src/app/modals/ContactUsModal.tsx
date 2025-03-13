@@ -25,12 +25,26 @@ export default function ContactUsModal({ isOpen, setIsOpen }: ContactUsModalProp
     preferredContact: 'email'
   })
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault()
-    console.log('Form submitted:', formData)
-    // Add your form submission logic here
-    setIsOpen(false)
+const handleSubmit = async (e: FormEvent) => {
+  e.preventDefault();
+  try {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      setIsOpen(false);
+      // Show success message
+    } else {
+      // Show error message
+    }
+  } catch (error) {
+    console.error("Failed to submit form:", error);
+    // Show error message
   }
+};
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
