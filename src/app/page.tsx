@@ -2,32 +2,113 @@
 
 import { useState } from "react";
 import ContactUsModal from "./modals/ContactUsModal";
+import { Button, Typography, Container, Box, Paper } from '@mui/material';
+import { Phone, LocationOn } from '@mui/icons-material';
 
 export default function Home() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        {/* ...existing code... */}
+    <Container
+      disableGutters
+      sx={{
+        maxWidth: "100% !important",
+        p: 0,
+      }}
+    >
+      <Paper
+        elevation={0}
+        sx={{
+          minHeight: "100vh",
+          width: "100vw",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background:
+            "linear-gradient(135deg, rgba(240, 248, 255, 0.95) 0%, rgba(176, 224, 230, 0.95) 100%)",
+          backdropFilter: "blur(10px)",
+          position: "relative",
+          "&::before": {
+            content: '""',
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background:
+              "radial-gradient(circle at 50% 50%, rgba(135, 206, 235, 0.1) 0%, rgba(0, 191, 255, 0.05) 100%)",
+            pointerEvents: "none",
+          },
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "100%",
+            maxWidth: "lg",
+            py: 8,
+            px: 4,
+          }}
+        >
+          <Typography variant='h2' component='h1' align='center' sx={{ mb: 1 }}>
+            Applied Tech, Heating & Cooling
+          </Typography>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          {/* ...existing code... */}
-          <button
+          <Typography
+            variant='h4'
+            component='h2'
+            align='center'
+            color='text.secondary'
+            sx={{ mb: 0 }}
+          >
+            Rudy Avila
+          </Typography>
+
+          <Typography variant='h6' color='text.secondary' sx={{ mb: 2 }}>
+            Field Engineer
+          </Typography>
+
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1 }}>
+            <Phone color='primary' />
+            <Typography
+              variant='h6'
+              component='a'
+              href='tel:+18478291800'
+              sx={{
+                textDecoration: "none",
+                color: "primary.main",
+                "&:hover": { textDecoration: "underline" },
+              }}
+            >
+              (847) 829-1800
+            </Typography>
+          </Box>
+
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 3 }}>
+            <LocationOn color='action' />
+            <Typography variant='subtitle1' color='text.secondary'>
+              Serving Chicago City and Suburbs
+            </Typography>
+          </Box>
+
+          <Button
+            variant='contained'
+            size='large'
             onClick={() => setIsContactModalOpen(true)}
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto"
+            sx={{ px: 4 }}
           >
             Contact Us
-          </button>
-        </div>
-      </main>
-      
-      <ContactUsModal 
-        isOpen={isContactModalOpen} 
-        setIsOpen={setIsContactModalOpen} 
-      />
+          </Button>
+        </Box>
+      </Paper>
 
-      {/* ...existing footer code... */}
-    </div>
+      <ContactUsModal
+        isOpen={isContactModalOpen}
+        setIsOpen={setIsContactModalOpen}
+      />
+    </Container>
   );
 }

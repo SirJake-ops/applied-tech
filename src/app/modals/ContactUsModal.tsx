@@ -36,19 +36,16 @@ const handleSubmit = async (e: FormEvent) => {
 
     if (response.ok) {
       setIsOpen(false);
-      // Show success message
     } else {
-      // Show error message
     }
   } catch (error) {
     console.error("Failed to submit form:", error);
-    // Show error message
   }
 };
 
   return (
     <Transition appear show={isOpen} as={Fragment}>
-      <Dialog as="div" className="relative z-50" onClose={() => setIsOpen(false)}>
+      <Dialog as="div" className="relative z-50" onClose={() => {}}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
