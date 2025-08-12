@@ -26,8 +26,6 @@ export default function Home() {
         isOpen={isContactModalOpen} 
         setIsOpen={setIsContactModalOpen} 
       />
-
-      {/* ...existing footer code... */}
     </div>
   );
 }
