@@ -6,12 +6,12 @@ const prisma = new PrismaClient()
 
 export async function GET() {
   try {
-    // Get all unsent submissions
+
     const submissions = await prisma.contactSubmission.findMany({
       where: { emailSent: false },
     })
 
-    // Send emails for each submission
+
     for (const submission of submissions) {
       await sendContactNotification(submission)
       await prisma.contactSubmission.update({
